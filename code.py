@@ -1,3 +1,5 @@
+# All encryption functions in one place
+
 import numpy as np
 
 def factors(x):
