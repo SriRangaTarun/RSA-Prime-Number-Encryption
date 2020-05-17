@@ -7,7 +7,6 @@ def factors(x):
             ct = ct + 1; 
     return ct
 
-    
 def encrypt(num, public_key):
     val = (num**public_key[0]) % public_key[1]
     return val
@@ -27,7 +26,6 @@ def decrypt(num, public_key):
                 else: 
                     fac = fac + np.array([0,i])
             j = j + 1
-
             
     fac1 = fac[0]
     fac2 = fac[1]
