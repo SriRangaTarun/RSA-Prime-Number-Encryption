@@ -1,4 +1,3 @@
-
 import numpy as np
 
 def factors(x):
@@ -40,4 +39,46 @@ def decrypt(num, public_key):
     val = (num**a) % public_key[1]
     return val
     
- 
+    def encryptMessage(sequence):
+    encryptedSequence = ""
+    encryptedChar = ''
+    ct = 0
+    
+    for i in range(0, len(sequence)):
+        char = sequence[i]
+        
+        if char == ' ':
+            ct = ct + 1
+            
+        encryptedChar = chr(encrypt(ord(char), [5, 20711]) + 1750 + (i//5))
+        encryptedSequence = encryptedSequence + encryptedChar
+        
+    return encryptedSequence
+
+def decryptMessage(sequence):
+    decryptedSequence = ""
+    decryptedChar = ''
+    ct = 0
+    
+    for i in range(0, len(sequence)):
+        char = sequence[i]
+        
+        if char == ' ':
+            ct = ct + 1
+            
+        decryptedChar = chr(decrypt(ord(char) - 1750 - (i//5), [5, 20711]))
+        decryptedSequence = decryptedSequence + decryptedChar
+        
+    return decryptedSequence
+
+def encryptMessageStrong(sequence):
+    message = sequence
+    for i in range(10):
+        message = encryptMessage(message)
+    return message
+
+def decryptMessageStrong(sequence):
+    message = sequence
+    for i in range(10):
+        message = decryptMessage(message)
+    return message
